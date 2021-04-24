@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { BoxComponent } from '../box/box.component';
 
 @Component({
   selector: 'app-canvas',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CanvasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private resolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
+  }
+
+  @ViewChild("boxContainer", { read: ViewContainerRef }) container;
+  componentRef: ComponentRef<any>;
+
+  addBox() {
+    const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(BoxComponent);
+    this.componentRef = this.container.createComponent(factory);
+
+  }
+  
+  ngOnDestroy() {
+    this.componentRef.destroy();    
   }
 
 }

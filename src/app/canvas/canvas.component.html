@@ -1,9 +1,11 @@
 <div class="container-fluid">
   <div class="row">
-  <div class="col-10 h100vh"></div>
+  <div class="col-10 h100vh">
+    <template #boxContainer></template>
+  </div>
   <div class="col-2 h100vh bg-light">
     <div class="h3">Moveable Box Generator</div>
-    <div class="btn btn-primary">Click</div>
+    <div class="btn btn-primary" (click)="addBox()">Click</div>
   </div>
   </div>
 </div>
