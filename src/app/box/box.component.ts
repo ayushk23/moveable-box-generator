@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from 'events';
 import { Subscription } from 'rxjs';
+import { Constants } from '../constants';
 import { ToggleService } from '../service/toggle.service';
 
 @Component({
@@ -12,6 +13,13 @@ export class BoxComponent implements OnInit {
 
   disableEvents: boolean = false;
   subscription: Subscription;
+  // generate box id as unique timestamp
+  boxId: any = Date.now();
+  @Input() zindex: number = 1;
+  // New box gets generated at a random margins for top and left
+  @Input() mtop = 0 ;
+  @Input() mleft = 0 ;
+  colour = this.getRandomColour();
 
   constructor(private toggleService: ToggleService) { }
 
@@ -21,15 +29,8 @@ export class BoxComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  // generate box id as unique timestamp
-  boxId: any = Date.now();
-  @Input() zindex: number = 1;
-  @Input() mtop = 0 ;
-  @Input() mleft = 0 ;
-  @Output() output = new EventEmitter();
 
   handleKeyboardEvent(event: KeyboardEvent) { 
-    console.log(this.disableEvents);
     // if toggle is clicked(false value), do not move the box
     if(!this.disableEvents){
       return;
@@ -47,7 +48,7 @@ export class BoxComponent implements OnInit {
                       break;
       case "s":;
       case "S":;
-      case "ArrowDown": this.mtop= (this.mtop+1)<93?this.mtop+1:this.mtop; 
+      case "ArrowDown": this.mtop= (this.mtop+1)<Constants.MAX_TOP_MARGIN?this.mtop+1:this.mtop; 
                       box.style.marginTop = this.mtop.toString();
                       break;
       case "a":;
@@ -57,13 +58,18 @@ export class BoxComponent implements OnInit {
                       break;
       case "d":;
       case "D":;
-      case "ArrowRight": this.mleft= (this.mleft+1)<77?this.mleft+1:this.mleft;
+      case "ArrowRight": this.mleft= (this.mleft+1)<Constants.MAX_LEFT_MARGIN?this.mleft+1:this.mleft;
                       box.style.marginLeft = this.mtop.toString(); 
                       break;
-      case "Delete": box.outerHTML = ""; break;
-      default: console.log(key +" pressed. Did nothing");
+      case "Delete": box.parentElement.outerHTML = ""; break;
+      default: console.log(key +" pressed. Did nothing"); break;
     }
 
+  }
+
+  getRandomColour(){
+    let colourArray = ["#007bff", "#ff9400","#fffe00", "#28a745", "#dc3545", "#ffc107", "#17a2b8", "#263f58", "#ad6d6d"];
+    return colourArray[Math.floor(Math.random()*colourArray.length)];
   }
 
 

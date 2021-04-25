@@ -2,6 +2,7 @@ import { Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, On
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { BoxComponent } from '../box/box.component';
+import { Constants } from '../constants';
 import { ToggleService } from '../service/toggle.service';
 
 @Component({
@@ -28,11 +29,8 @@ export class CanvasComponent implements OnInit {
   componentRef: ComponentRef<any>;
 
   eventToggler(event){
-    console.log(event);
-    console.log(this.disableEvents);
     this.disableEvents = !this.disableEvents;
     this.toggleService.toggleEvent(this.disableEvents);
-    console.log(this.disableEvents);
   }
 
   addBox() {
@@ -42,8 +40,8 @@ export class CanvasComponent implements OnInit {
     localStorage.setItem("zindex", ++zindex +"");
     this.componentRef.instance.zindex = zindex;
     //generate new box in only white area randomly
-    this.componentRef.instance.mtop = this.getMargin(0,93);
-    this.componentRef.instance.mleft = this.getMargin(0,77);
+    this.componentRef.instance.mtop = this.getMargin(0,Constants.MAX_TOP_MARGIN);
+    this.componentRef.instance.mleft = this.getMargin(0,Constants.MAX_LEFT_MARGIN);
 
   }
 

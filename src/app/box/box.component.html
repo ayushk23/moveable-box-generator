@@ -1,8 +1,9 @@
 <button id={{boxId}} 
-  class="border border-primary rounded p-2 box" 
+  class="rounded p-2 box" 
   [style.z-index]="zindex"
   [style.margin-left.vw]="mleft"
   [style.margin-top.vh]="mtop"
+  [style.background-color]="colour"
   (keyup)="handleKeyboardEvent($event)"
   >
   {{zindex}}

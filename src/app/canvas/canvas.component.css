@@ -1,3 +1,33 @@
 .h100vh{
     height: 100vh !important;
 }
+.instructions{
+    font-size: 12px;
+    font-weight: 400;
+}
+.leftBorder{
+    border-left: 1px solid #e4e4e4;
+}
+.heading{
+    font-weight: 400 !important;
+    color:#dedede;
+}
+.addBtn{
+    bottom:0;
+    position:fixed;
+    width:15.6vw;
+}
+.chkBox{
+    margin:0.5rem;
+}
+.controller{
+    background-color: #09172b;
+    color: #adbac7;
+    font-family: sans-serif;
+}
+.canvas{
+    border:5px solid;
+}
+b{
+    font-family: monospace;
+}

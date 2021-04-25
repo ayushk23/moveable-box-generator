@@ -1,17 +1,31 @@
 <div class="container-fluid">
   <div class="row">
-  <div class="col-10 h100vh">
-    <template #boxContainer></template>
-  </div>
-  <div class="col-2 h100vh bg-light">
-    <div class="h3">Moveable Box Generator</div>
-    <div class="btn btn-primary m-1" (click)="addBox()">Add</div>
-    
-    <div class="row">
-      <label for="toggleBox">Disable keyboard events </label>
+    <div class="col-10 h100vh canvas">
+      <template #boxContainer></template>
     </div>
-    <input  type="checkbox" (click)="eventToggler($event)">
-  
-  </div>
+    
+    <div class="col-2 controller h100vh leftBorder">
+      <div class="h3 heading">Moveable Box Generator</div>
+      <hr class="bg-light">
+      <div class="row instructions pr-2">
+        <ul>
+          <li>Click <b>Add</b> to generate a coloured box at a random place in white area.</li>
+          <li>Click on a box to select it.</li>
+          <li>Use arrow keys OR <b>W,A,S,D</b> to move the selected box inside the white area.</li>
+          <li>Press <b>Delete</b> key to delete the selected box.</li>
+          <li>Toggle keyboard controls using the toggle switch.</li>
+        </ul>
+      </div>
+      
+      <div class="row p-3">
+        <label>Disable keyboard events</label>
+        <input id="togglebox" type="checkbox" class="chkBox" (click)="eventToggler($event)">
+      </div>
+
+      <div class="row">
+        <div class="btn btn-sm btn-warning m-1 addBtn" (click)="addBox()"><b>ADD A BOX</b></div>
+      </div>
+
+    </div>
   </div>
 </div>
