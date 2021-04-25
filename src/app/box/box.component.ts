@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-box',
@@ -10,6 +11,14 @@ export class BoxComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  boxId: any = Date.now();
+  @Output() output = new EventEmitter();
+
+  logDetails(event){
+    console.log(event);
+    // console.log(event.target.id);
   }
 
 }

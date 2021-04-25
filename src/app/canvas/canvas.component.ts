@@ -26,4 +26,9 @@ export class CanvasComponent implements OnInit {
     this.componentRef.destroy();    
   }
 
+  deleteBox(){
+    this.componentRef.destroy();
+    this.ngOnDestroy();
+  }
+
 }
