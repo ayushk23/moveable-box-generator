@@ -12,8 +12,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## How to use
 
-⋅⋅⋅:small_orange_diamond: Click `Add a Box` to generate a coloured box at a random place in white area.
-⋅⋅⋅:small_orange_diamond: Click on a box to select it.
-⋅⋅⋅:small_orange_diamond: Use arrow keys OR `W,A,S,D` to move the selected box inside the white area.
-⋅⋅⋅:small_orange_diamond: Press `Delete` key to delete the selected box.
-⋅⋅⋅:small_orange_diamond: Toggle keyboard controls using the toggle checkbox.
+:small_orange_diamond: Click `Add a Box` to generate a coloured box at a random place in white area.<br/>
+:small_orange_diamond: Click on a box to select it.<br/>
+:small_orange_diamond: Use arrow keys OR `W,A,S,D` to move the selected box inside the white area.<br/>
+:small_orange_diamond: Press `Delete` key to delete the selected box.<br/>
+:small_orange_diamond: Toggle keyboard controls using the toggle checkbox.<br/>
