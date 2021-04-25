@@ -11,6 +11,7 @@ export class CanvasComponent implements OnInit {
   constructor(private resolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
+    localStorage.setItem("zindex", "10");
   }
 
   @ViewChild("boxContainer", { read: ViewContainerRef }) container;
@@ -19,6 +20,9 @@ export class CanvasComponent implements OnInit {
   addBox() {
     const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(BoxComponent);
     this.componentRef = this.container.createComponent(factory);
+    var zindex = parseInt(localStorage.getItem("zindex"));
+    localStorage.setItem("zindex", ++zindex +"");
+    this.componentRef.instance.zindex = zindex;
 
   }
   

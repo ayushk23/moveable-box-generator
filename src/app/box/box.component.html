@@ -1,6 +1,7 @@
 <button id={{boxId}} 
   class="border border-primary rounded p-2 m-1 btt" 
+  [style.z-index]="zindex"
   (click)="logDetails($event)" 
   >
-  box works! with id {{boxId}}
+  box with id {{boxId}}
 </button>

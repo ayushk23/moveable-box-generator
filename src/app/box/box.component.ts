@@ -14,11 +14,14 @@ export class BoxComponent implements OnInit {
   }
 
   boxId: any = Date.now();
+  @Input() zindex: number = 10;
   @Output() output = new EventEmitter();
 
   logDetails(event){
     console.log(event);
     // console.log(event.target.id);
+    
   }
+
 
 }
