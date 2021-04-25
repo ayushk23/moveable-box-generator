@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from 'events';
+import { Subscription } from 'rxjs';
+import { ToggleService } from '../service/toggle.service';
 
 @Component({
   selector: 'app-box',
@@ -8,33 +10,35 @@ import { EventEmitter } from 'events';
 })
 export class BoxComponent implements OnInit {
 
-  constructor() { }
+  disableEvents: boolean = false;
+  subscription: Subscription;
+
+  constructor(private toggleService: ToggleService) { }
 
   ngOnInit() {
+    this.subscription = this.toggleService.currentEventToggleStatus.subscribe(disableEvents => this.disableEvents = disableEvents);
   }
-  // geenrate box id as unique timestamp
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  // generate box id as unique timestamp
   boxId: any = Date.now();
   @Input() zindex: number = 1;
   @Input() mtop = 0 ;
   @Input() mleft = 0 ;
   @Output() output = new EventEmitter();
 
-  logDetails(event){
-    // console.lsog(event);
-    // console.log(event.target.id);
-  }
-
   handleKeyboardEvent(event: KeyboardEvent) { 
-    console.log(event);
-    console.log((event.target as HTMLElement).id);
+    console.log(this.disableEvents);
+    // if toggle is clicked(false value), do not move the box
+    if(!this.disableEvents){
+      return;
+    }
     this.moveBox(event.key, (event.target as HTMLElement).id, event);
   }
 
   moveBox(key, id, event){
-    // console.log(key , "pressed with id"+id );
-    // console.log(event.target.id);
     var box = document.getElementById(id);
-    console.log(box);
     switch(key){
       case "w":;
       case "W":;
@@ -56,11 +60,9 @@ export class BoxComponent implements OnInit {
       case "ArrowRight": this.mleft= (this.mleft+1)<77?this.mleft+1:this.mleft;
                       box.style.marginLeft = this.mtop.toString(); 
                       break;
-      default: console.log(key +" pressed. did nothing");
+      case "Delete": box.outerHTML = ""; break;
+      default: console.log(key +" pressed. Did nothing");
     }
-    
-
-
 
   }
 

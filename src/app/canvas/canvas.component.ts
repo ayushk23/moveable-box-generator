@@ -1,5 +1,8 @@
 import { Component, ComponentFactory, ComponentFactoryResolver, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { BoxComponent } from '../box/box.component';
+import { ToggleService } from '../service/toggle.service';
 
 @Component({
   selector: 'app-canvas',
@@ -8,14 +11,29 @@ import { BoxComponent } from '../box/box.component';
 })
 export class CanvasComponent implements OnInit {
 
-  constructor(private resolver: ComponentFactoryResolver) { }
+  disableEvents: boolean = false;
+  subscription: Subscription;
+
+  constructor(private resolver: ComponentFactoryResolver, private toggleService: ToggleService) { }
 
   ngOnInit() {
     localStorage.setItem("zindex", "0");
+    this.subscription = this.toggleService.currentEventToggleStatus.subscribe(disableEvents => this.disableEvents = disableEvents);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   @ViewChild("boxContainer", { read: ViewContainerRef }) container;
   componentRef: ComponentRef<any>;
+
+  eventToggler(event){
+    console.log(event);
+    console.log(this.disableEvents);
+    this.disableEvents = !this.disableEvents;
+    this.toggleService.toggleEvent(this.disableEvents);
+    console.log(this.disableEvents);
+  }
 
   addBox() {
     const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(BoxComponent);
@@ -28,18 +46,10 @@ export class CanvasComponent implements OnInit {
     this.componentRef.instance.mleft = this.getMargin(0,77);
 
   }
-  
-  ngOnDestroy() {
-    this.componentRef.destroy();    
-  }
 
   getMargin(min, max) {
     return Math.random() * (max - min) + min;
   }
 
-  deleteBox(){
-    this.componentRef.destroy();
-    this.ngOnDestroy();
-  }
 
 }

@@ -6,7 +6,12 @@
   <div class="col-2 h100vh bg-light">
     <div class="h3">Moveable Box Generator</div>
     <div class="btn btn-primary m-1" (click)="addBox()">Add</div>
-    <div class="btn btn-primary m-1" (click)="deleteBox()">Delete</div>
+    
+    <div class="row">
+      <label for="toggleBox">Disable keyboard events </label>
+    </div>
+    <input  type="checkbox" (click)="eventToggler($event)">
+  
   </div>
   </div>
 </div>
