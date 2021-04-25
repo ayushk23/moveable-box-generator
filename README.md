@@ -6,22 +6,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## App UI
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![APP Interface](src/assets/BoxGeneratorUI.PNG?raw=true "App UI")
 
-## Build
+## How to use
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+:small_orange_diamond: Click `Add a Box` to generate a coloured box at a random place in white area.
+:small_orange_diamond: Click on a box to select it.
+:small_orange_diamond: Use arrow keys OR `W,A,S,D` to move the selected box inside the white area.
+:small_orange_diamond: Press `Delete` key to delete the selected box.
+:small_orange_diamond: Toggle keyboard controls using the toggle checkbox.
