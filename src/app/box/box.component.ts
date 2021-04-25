@@ -14,7 +14,9 @@ export class BoxComponent implements OnInit {
   }
 
   boxId: any = Date.now();
-  @Input() zindex: number = 10;
+  @Input() zindex: number = 1;
+  @Input() mtop = 0 ;
+  @Input() mleft = 0 ;
   @Output() output = new EventEmitter();
 
   logDetails(event){

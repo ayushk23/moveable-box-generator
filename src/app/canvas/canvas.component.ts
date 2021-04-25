@@ -11,7 +11,7 @@ export class CanvasComponent implements OnInit {
   constructor(private resolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-    localStorage.setItem("zindex", "10");
+    localStorage.setItem("zindex", "0");
   }
 
   @ViewChild("boxContainer", { read: ViewContainerRef }) container;
@@ -23,11 +23,18 @@ export class CanvasComponent implements OnInit {
     var zindex = parseInt(localStorage.getItem("zindex"));
     localStorage.setItem("zindex", ++zindex +"");
     this.componentRef.instance.zindex = zindex;
+    //generate new box in only white area randomly
+    this.componentRef.instance.mtop = this.getMargin(0,93);
+    this.componentRef.instance.mleft = this.getMargin(0,77);
 
   }
   
   ngOnDestroy() {
     this.componentRef.destroy();    
+  }
+
+  getMargin(min, max) {
+    return Math.random() * (max - min) + min;
   }
 
   deleteBox(){

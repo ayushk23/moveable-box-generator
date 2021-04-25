@@ -1,7 +1,9 @@
 <button id={{boxId}} 
-  class="border border-primary rounded p-2 m-1 btt" 
+  class="border border-primary rounded p-2 box" 
   [style.z-index]="zindex"
+  [style.margin-left.vw]="mleft"
+  [style.margin-top.vh]="mtop"
   (click)="logDetails($event)" 
   >
-  box with id {{boxId}}
+  {{zindex}}
 </button>
