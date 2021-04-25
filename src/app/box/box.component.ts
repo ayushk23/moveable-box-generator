@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { EventEmitter } from 'events';
 import { Subscription } from 'rxjs';
 import { Constants } from '../constants';
 import { ToggleService } from '../service/toggle.service';

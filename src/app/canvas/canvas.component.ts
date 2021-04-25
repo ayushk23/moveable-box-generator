@@ -14,6 +14,9 @@ export class CanvasComponent implements OnInit {
 
   disableEvents: boolean = false;
   subscription: Subscription;
+  
+  @ViewChild("boxContainer", { read: ViewContainerRef }) container;
+  componentRef: ComponentRef<any>;
 
   constructor(private resolver: ComponentFactoryResolver, private toggleService: ToggleService) { }
 
@@ -24,9 +27,6 @@ export class CanvasComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
-  @ViewChild("boxContainer", { read: ViewContainerRef }) container;
-  componentRef: ComponentRef<any>;
 
   eventToggler(event){
     this.disableEvents = !this.disableEvents;
@@ -42,7 +42,6 @@ export class CanvasComponent implements OnInit {
     //generate new box in only white area randomly
     this.componentRef.instance.mtop = this.getMargin(0,Constants.MAX_TOP_MARGIN);
     this.componentRef.instance.mleft = this.getMargin(0,Constants.MAX_LEFT_MARGIN);
-
   }
 
   getMargin(min, max) {
